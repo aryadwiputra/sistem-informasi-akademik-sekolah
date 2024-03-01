@@ -12,7 +12,7 @@ class Mapel extends Model
 
     protected $table = 'mapel';
 
-    protected $fillable = ['id', 'nama_mapel', 'paket_id', 'kelompok'];
+    protected $fillable = ['id', 'nama_mapel', 'kelompok'];
 
     public function paket()
     {

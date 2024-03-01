@@ -42,11 +42,15 @@
             @include('components.footer')
         </div>
     </div>
+
+    @stack('additional-modals')
+
     <!-- Libs JS -->
     @stack('before-scripts')
     <!-- Tabler Core -->
-    <script src="{{ asset('admin/js/tabler.min.js?1684106062') }}" defer></script>
-    <script src="{{ asset('admin/js/demo.min.js?1684106062') }}" defer></script>
+    <script src="{{ asset('admin/js/tabler.min.js?1684106062') }}"></script>
+    <script src="{{ asset('admin/js/demo.min.js?1684106062') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('after-scripts')
 </body>
 
