@@ -248,8 +248,17 @@
                         <a class="dropdown-item" href="{{ route('mapel.index') }}" rel="noopener">
                             Mata Pelajaran
                         </a>
+                        <a class="dropdown-item" href="{{ route('guru.index') }}" rel="noopener">
+                            Guru
+                        </a>
+                        <a class="dropdown-item" href="{{ route('kelas.index') }}" rel="noopener">
+                            Kelas
+                        </a>
                         <a class="dropdown-item" href="{{ route('jadwal.index') }}" rel="noopener">
                             Jadwal
+                        </a>
+                        <a class="dropdown-item" href="{{ route('siswa.index') }}" rel="noopener">
+                            Siswa
                         </a>
                     </div>
                 </li>

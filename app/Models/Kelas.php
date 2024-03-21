@@ -12,15 +12,10 @@ class Kelas extends Model
 
     protected $table = 'kelas';
 
-    protected $fillable = ['paket_id', 'nama_kelas', 'guru_id'];
+    protected $fillable = ['nama_kelas', 'guru_id'];
 
     public function guru()
     {
         return $this->belongsTo(Guru::class)->withDefault();
-    }
-
-    public function paket()
-    {
-        return $this->belongsTo(Paket::class)->withDefault();
     }
 }

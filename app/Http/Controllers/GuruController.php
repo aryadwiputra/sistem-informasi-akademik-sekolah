@@ -16,6 +16,7 @@ use App\Exports\GuruExport;
 use App\Imports\GuruImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Nilai;
+use App\Models\User;
 
 class GuruController extends Controller
 {
@@ -28,7 +29,8 @@ class GuruController extends Controller
     {
         $mapel = Mapel::orderBy('nama_mapel')->get();
         $max = Guru::max('id_card');
-        return view('admin.guru.index', compact('mapel', 'max'));
+        $guru = Guru::OrderBy('nama_guru', 'asc')->get();
+        return view('admin.guru.index', compact('guru', 'mapel', 'max'));
     }
 
     /**
@@ -126,6 +128,7 @@ class GuruController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // print_r($request->all());
         $this->validate($request, [
             'nama_guru' => 'required',
             'mapel_id' => 'required',
@@ -133,14 +136,6 @@ class GuruController extends Controller
         ]);
 
         $guru = Guru::findorfail($id);
-        $user = User::where('id_card', $guru->id_card)->first();
-        if ($user) {
-            $user_data = [
-                'name' => $request->nama_guru
-            ];
-            $user->update($user_data);
-        } else {
-        }
         $guru_data = [
             'nama_guru' => $request->nama_guru,
             'mapel_id' => $request->mapel_id,
@@ -168,13 +163,8 @@ class GuruController extends Controller
             $jadwal = Jadwal::where('guru_id', $guru->id)->delete();
         } else {
         }
-        $countUser = User::where('id_card', $guru->id_card)->count();
-        if ($countUser >= 1) {
-            $user = User::where('id_card', $guru->id_card)->delete();
-        } else {
-        }
         $guru->delete();
-        return redirect()->route('guru.index')->with('warning', 'Data guru berhasil dihapus! (Silahkan cek trash data guru)');
+        return redirect()->route('guru.index')->with('success', 'Data guru berhasil dihapus! (Silahkan cek trash data guru)');
     }
 
     public function trash()
