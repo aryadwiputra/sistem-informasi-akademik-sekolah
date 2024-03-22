@@ -260,6 +260,10 @@
                         <a class="dropdown-item" href="{{ route('siswa.index') }}" rel="noopener">
                             Siswa
                         </a>
+
+                        <a class="dropdown-item" href="{{ route('user.index') }}" rel="noopener">
+                            User
+                        </a>
                     </div>
                 </li>
             </ul>

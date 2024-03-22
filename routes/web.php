@@ -7,6 +7,7 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -142,7 +143,7 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('/rapot-siswa/{id}', 'RapotController@edit')->name('rapot-siswa');
         // Route::get('/rapot-show/{id}', 'RapotController@rapot')->name('rapot-show');
         // Route::get('/predikat', 'NilaiController@create')->name('predikat');
-        // Route::resource('/user', 'UserController');
+        Route::resource('/user', UserController::class);
     });
 });
 
