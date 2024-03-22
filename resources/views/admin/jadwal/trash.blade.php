@@ -1,31 +1,27 @@
 @extends('layouts.admin')
 
-@section('title', 'Trash Mata Pelajaran')
+@section('title', 'Trash Jadwal')
 
 @php
     $headerData = [
-        'pretitle' => 'Trash Mata Pelajaran',
-        'title' => 'Trash Mata Pelajaran',
+        'pretitle' => 'Trash Jadwal',
+        'title' => 'Trash Jadwal',
         'actions' => [
             ['label' => 'New view', 'url' => '#', 'class' => 'btn-green'],
             ['label' => 'Create new report', 'url' => '#', 'class' => 'btn-primary'],
         ],
     ];
 @endphp
-
 @section('content')
     @include('components.header', $headerData)
 
     <div class="page-body">
         <div class="container-xl">
             <div class="row row-deck row-cards">
-                @php
-                    $no = 1;
-                @endphp
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Trash Data Mapel</h3>
+                            <h3 class="card-title">Trash Data Jawdal</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -33,32 +29,34 @@
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Nama Mapel</th>
-                                        <th>Paket</th>
-                                        <th>Kelompok</th>
+                                        <th>Hari</th>
+                                        <th>Jadwal</th>
+                                        <th>Kelas</th>
+                                        <th>Jam Pelajaran</th>
+                                        <th>Ruang Kelas</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($mapel as $data)
+                                    @foreach ($jadwal as $data)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $data->nama_mapel }}</td>
-                                            @if ($data->paket_id == 9)
-                                                <td>{{ 'Semua' }}</td>
-                                            @else
-                                                <td>{{ $data->paket->ket }}</td>
-                                            @endif
-                                            <td>{{ $data->kelompok }}</td>
+                                            <td>{{ $data->hari->nama_hari }}</td>
                                             <td>
-                                                <form action="{{ route('mapel.kill', $data->id) }}" method="post">
+                                                <h5 class="card-title">{{ $data->mapel->nama_mapel }}</h5>
+                                                <p class="card-text"><small
+                                                        class="text-muted">{{ $data->guru->nama_guru }}</small></p>
+                                            </td>
+                                            <td>{{ $data->kelas->nama_kelas }}</td>
+                                            <td>{{ $data->jam_mulai }} - {{ $data->jam_selesai }}</td>
+                                            <td>{{ $data->ruang->nama_ruang }}</td>
+                                            <td>
+                                                <form action="{{ route('jadwal.kill', $data->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <a href="{{ route('mapel.restore', Crypt::encrypt($data->id)) }}"
-                                                        class="btn btn-success btn-sm mt-2"><i
-                                                            class="nav-icon fas fa-undo"></i> &nbsp; Restore</a>
-                                                    <button class="btn btn-danger btn-sm mt-2"><i
-                                                            class="nav-icon fas fa-trash-alt"></i> &nbsp; Hapus</button>
+                                                    <a href="{{ route('jadwal.restore', Crypt::encrypt($data->id)) }}"
+                                                        class="btn btn-success mt-2">Restore</a>
+                                                    <button class="btn btn-danger mt-2">Hapus</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -76,6 +74,6 @@
     <script>
         $("#ViewTrash").addClass("active");
         $("#liViewTrash").addClass("menu-open");
-        $("#TrashMapel").addClass("active");
+        $("#TrashJadwal").addClass("active");
     </script>
 @endsection

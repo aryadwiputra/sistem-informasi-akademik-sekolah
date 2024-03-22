@@ -16,17 +16,17 @@
         <div class="container-xl">
             <div class="row row-deck row-cards">
                 <div class="col-md-12">
-                    {{-- Error --}}
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     <div class="card">
+                        {{-- Error --}}
+                        @if ($errors->any())
+                            <div class="alert alert-danger mb-3">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="card-header">
                             <h3 class="card-title">
                                 <button type="button" class="btn btn-default" data-bs-toggle="modal"

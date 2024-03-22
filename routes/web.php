@@ -75,26 +75,44 @@ Route::middleware(['auth'])->group(function () {
     // });
 
     Route::middleware(['admin'])->group(function () {
-        // Route::middleware(['trash'])->group(function () {
-        //     Route::get('/jadwal/trash', 'JadwalController@trash')->name('jadwal.trash');
-        //     Route::get('/jadwal/restore/{id}', 'JadwalController@restore')->name('jadwal.restore');
-        //     Route::delete('/jadwal/kill/{id}', 'JadwalController@kill')->name('jadwal.kill');
-        //     Route::get('/guru/trash', 'GuruController@trash')->name('guru.trash');
-        //     Route::get('/guru/restore/{id}', 'GuruController@restore')->name('guru.restore');
-        //     Route::delete('/guru/kill/{id}', 'GuruController@kill')->name('guru.kill');
-        //     Route::get('/kelas/trash', 'KelasController@trash')->name('kelas.trash');
-        //     Route::get('/kelas/restore/{id}', 'KelasController@restore')->name('kelas.restore');
-        //     Route::delete('/kelas/kill/{id}', 'KelasController@kill')->name('kelas.kill');
-        //     Route::get('/siswa/trash', 'SiswaController@trash')->name('siswa.trash');
-        //     Route::get('/siswa/restore/{id}', 'SiswaController@restore')->name('siswa.restore');
-        //     Route::delete('/siswa/kill/{id}', 'SiswaController@kill')->name('siswa.kill');
-        //     Route::get('/mapel/trash', 'MapelController@trash')->name('mapel.trash');
-        //     Route::get('/mapel/restore/{id}', 'MapelController@restore')->name('mapel.restore');
-        //     Route::delete('/mapel/kill/{id}', 'MapelController@kill')->name('mapel.kill');
-        //     Route::get('/user/trash', 'UserController@trash')->name('user.trash');
-        //     Route::get('/user/restore/{id}', 'UserController@restore')->name('user.restore');
-        //     Route::delete('/user/kill/{id}', 'UserController@kill')->name('user.kill');
-        // });
+        Route::middleware(['trash'])->group(function () {
+            Route::prefix('jadwal')->group(function () {
+                Route::get('/trash', [JadwalController::class, 'trash'])->name('jadwal.trash');
+                Route::get('/restore/{id}', [JadwalController::class, 'restore'])->name('jadwal.restore');
+                Route::delete('/kill/{id}', [JadwalController::class, 'kill'])->name('jadwal.kill');
+            });
+
+            Route::prefix('guru')->group(function () {
+                Route::get('/trash', [GuruController::class, 'trash'])->name('guru.trash');
+                Route::get('/restore/{id}', [GuruController::class, 'restore'])->name('guru.restore');
+                Route::delete('/kill/{id}', [GuruController::class, 'kill'])->name('guru.kill');
+            });
+
+            Route::prefix('kelas')->group(function () {
+                Route::get('/trash', [KelasController::class, 'trash'])->name('kelas.trash');
+                Route::get('/restore/{id}', [KelasController::class, 'restore'])->name('kelas.restore');
+                Route::delete('/kill/{id}', [KelasController::class, 'kill'])->name('kelas.kill');
+            });
+
+            Route::prefix('siswa')->group(function () {
+                Route::get('/trash', [SiswaController::class, 'trash'])->name('siswa.trash');
+                Route::get('/restore/{id}', [SiswaController::class, 'restore'])->name('siswa.restore');
+                Route::delete('/kill/{id}', [SiswaController::class, 'kill'])->name('siswa.kill');
+            });
+
+            Route::prefix('mapel')->group(function () {
+                Route::get('/trash', [MapelController::class, 'trash'])->name('mapel.trash');
+                Route::get('/restore/{id}', [MapelController::class, 'restore'])->name('mapel.restore');
+                Route::delete('/kill/{id}', [MapelController::class, 'kill'])->name('mapel.kill');
+            });
+
+            Route::prefix('user')->group(function () {
+                Route::get('/trash', [UserController::class, 'trash'])->name('user.trash');
+                Route::get('/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
+                Route::delete('/kill/{id}', [UserController::class, 'kill'])->name('user.kill');
+            });
+        });
+
         // Route::get('/admin/home', 'HomeController@admin')->name('admin.home');
         // Route::get('/admin/pengumuman', 'PengumumanController@index')->name('admin.pengumuman');
         // Route::post('/admin/pengumuman/simpan', 'PengumumanController@simpan')->name('admin.pengumuman.simpan');

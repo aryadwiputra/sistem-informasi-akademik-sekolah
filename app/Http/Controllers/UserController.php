@@ -170,7 +170,7 @@ class UserController extends Controller
 
     public function trash()
     {
-        $user = User::onlyTrashed()->paginate(10);
+        $user = User::onlyTrashed()->get();
         return view('admin.user.trash', compact('user'));
     }
 
