@@ -33,8 +33,7 @@
                                             <td>{{ $data->nama_guru }}</td>
                                             <td>
                                                 <a href="{{ route('guru.kehadiran', Crypt::encrypt($data->id)) }}"
-                                                    class="btn btn-info btn-sm"><i class="nav-icon fas fa-search-plus"></i>
-                                                    &nbsp; Ditails</a>
+                                                    class="btn btn-info"> Ditails</a>
                                             </td>
                                         </tr>
                                     @endforeach

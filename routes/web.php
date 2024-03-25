@@ -4,10 +4,13 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\JadwalController;
-use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\GuruController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -113,12 +116,14 @@ Route::middleware(['auth'])->group(function () {
             });
         });
 
-        // Route::get('/admin/home', 'HomeController@admin')->name('admin.home');
-        // Route::get('/admin/pengumuman', 'PengumumanController@index')->name('admin.pengumuman');
-        // Route::post('/admin/pengumuman/simpan', 'PengumumanController@simpan')->name('admin.pengumuman.simpan');
-        // Route::get('/guru/absensi', 'GuruController@absensi')->name('guru.absensi');
-        // Route::get('/guru/kehadiran/{id}', 'GuruController@kehadiran')->name('guru.kehadiran');
-        // Route::get('/absen/json', 'GuruController@json');
+
+        Route::get('/admin/home', [HomeController::class, 'admin'])->name('admin.home');
+        Route::get('/admin/pengumuman', [PengumumanController::class, 'index'])->name('admin.pengumuman');
+        Route::post('/admin/pengumuman/simpan', [PengumumanController::class, 'simpan'])->name('admin.pengumuman.simpan');
+        Route::get('/guru/absensi', [GuruController::class, 'absensi'])->name('guru.absensi');
+        Route::get('/guru/kehadiran/{id}', [GuruController::class, 'kehadiran'])->name('guru.kehadiran');
+        Route::get('/absen/json', [GuruController::class, 'json']);
+
         Route::get('/guru/mapel/{id}', [GuruController::class, 'mapel'])->name('guru.mapel');
         Route::get('/guru/ubah-foto/{id}', [GuruController::class, 'ubah_foto'])->name('guru.ubah-foto');
         Route::post('/guru/update-foto/{id}', [GuruController::class, 'update_foto'])->name('guru.update-foto');
