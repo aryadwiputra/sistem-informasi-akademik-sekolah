@@ -32,18 +32,9 @@
 <body>
     <script src="{{ asset('admin/js/demo-theme.min.js?1684106062') }}"></script>
 
-    <div class="page">
-        <!-- Sidebar -->
-        @include('components.sidebar')
-        <!-- Content -->
-        <div class="page-wrapper">
-            @yield('content')
-            <!-- Footer -->
-            @include('components.footer')
-        </div>
-    </div>
-
-    @stack('additional-modals')
+    <body class="d-flex flex-column">
+        @yield('content')
+    </body>
 
     <!-- Libs JS -->
     @stack('before-scripts')
@@ -51,8 +42,6 @@
     <script src="{{ asset('admin/js/tabler.min.js?1684106062') }}"></script>
     <script src="{{ asset('admin/js/demo.min.js?1684106062') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     @stack('after-scripts')
 </body>
 

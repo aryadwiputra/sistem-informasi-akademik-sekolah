@@ -163,8 +163,23 @@
         </div>
     </div>
 @endsection
-@section('script')
+@push('after-scripts')
     <script>
+        function inputAngka(e) {
+            var charCode = (e.which) ? e.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+
+        function sikap(e) {
+            var charCode = (e.which) ? e.which : event.keyCode
+            if (charCode > 31 && (charCode < 49 || charCode > 52)) {
+                return false;
+            }
+            return true;
+        }
         $(document).ready(function() {
             $('#role').change(function() {
                 var kel = $('#role option:selected').val();
@@ -190,4 +205,4 @@
         $("#liMasterData").addClass("menu-open");
         $("#DataUser").addClass("active");
     </script>
-@endsection
+@endpush

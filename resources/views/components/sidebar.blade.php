@@ -331,6 +331,89 @@
                         </span>
                     </a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
+                        data-bs-auto-close="false" role="button" aria-expanded="false">
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-text">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                                <path
+                                    d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                                <path d="M9 12h6" />
+                                <path d="M9 16h6" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Nilai
+                        </span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('ulangan-kelas') }}" rel="noopener">
+                            Nilai Ulangan
+                        </a>
+                        <a class="dropdown-item" href="{{ route('sikap-kelas') }}" rel="noopener">
+                            Nilai Sikap
+                        </a>
+                        <a class="dropdown-item" href="{{ route('rapot-kelas') }}" rel="noopener">
+                            Nilai Rapot
+                        </a>
+                        <a class="dropdown-item" href="{{ route('predikat') }}" rel="noopener">
+                            Deskripsi Predikat
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.pengumuman') }}">
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-calendar">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
+                                <path d="M16 3v4" />
+                                <path d="M8 3v4" />
+                                <path d="M4 11h16" />
+                                <path d="M11 15h1" />
+                                <path d="M12 15v3" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Pengumuman
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    <a class="nav-link" href="#"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <!-- Icon logout -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-logout">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M14 8v-3a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v2" />
+                                <path d="M7 12h14l-3 -3m0 6l3 -3" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Logout
+                        </span>
+                    </a>
+
+                </li>
             </ul>
         </div>
     </div>

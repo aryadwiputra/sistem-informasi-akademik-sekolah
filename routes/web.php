@@ -10,6 +10,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\UlanganController;
+use App\Http\Controllers\SikapController;
+use App\Http\Controllers\RapotController;
+use App\Http\Controllers\NilaiController;
+
 
 
 /*
@@ -34,6 +39,13 @@ Route::get('/clear-cache', function () {
     return 'DONE';
 });
 
+
+Route::get('/login/cek_email/json', [UserController::class, 'cek_email']);
+Route::get('/login/cek_password/json', [UserController::class, 'cek_password']);
+Route::post('/cek-email', [UserController::class, 'email'])->name('cek-email')->middleware('guest');
+Route::get('/reset/password/{id}', [UserController::class, 'password'])->name('reset.password')->middleware('guest');
+Route::patch('/reset/password/update/{id}', [UserController::class, 'update_password'])->name('reset.password.update')->middleware('guest');
+
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -46,36 +58,36 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware(['auth'])->group(function () {
-    // Route::get('/', 'HomeController@index')->name('home');
-    // Route::get('/home', 'HomeController@index')->name('home');
-    // Route::get('/jadwal/sekarang', 'JadwalController@jadwalSekarang');
-    // Route::get('/profile', 'UserController@profile')->name('profile');
-    // Route::get('/pengaturan/profile', 'UserController@edit_profile')->name('pengaturan.profile');
-    // Route::post('/pengaturan/ubah-profile', 'UserController@ubah_profile')->name('pengaturan.ubah-profile');
-    // Route::get('/pengaturan/edit-foto', 'UserController@edit_foto')->name('pengaturan.edit-foto');
-    // Route::post('/pengaturan/ubah-foto', 'UserController@ubah_foto')->name('pengaturan.ubah-foto');
-    // Route::get('/pengaturan/email', 'UserController@edit_email')->name('pengaturan.email');
-    // Route::post('/pengaturan/ubah-email', 'UserController@ubah_email')->name('pengaturan.ubah-email');
-    // Route::get('/pengaturan/password', 'UserController@edit_password')->name('pengaturan.password');
-    // Route::post('/pengaturan/ubah-password', 'UserController@ubah_password')->name('pengaturan.ubah-password');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/jadwal/sekarang', [JadwalController::class, 'jadwalSekarang']);
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+    Route::get('/pengaturan/profile', [UserController::class, 'edit_profile'])->name('pengaturan.profile');
+    Route::post('/pengaturan/ubah-profile', [UserController::class, 'ubah_profile'])->name('pengaturan.ubah-profile');
+    Route::get('/pengaturan/edit-foto', [UserController::class, 'edit_foto'])->name('pengaturan.edit-foto');
+    Route::post('/pengaturan/ubah-foto', [UserController::class, 'ubah_foto'])->name('pengaturan.ubah-foto');
+    Route::get('/pengaturan/email', [UserController::class, 'edit_email'])->name('pengaturan.email');
+    Route::post('/pengaturan/ubah-email', [UserController::class, 'ubah_email'])->name('pengaturan.ubah-email');
+    Route::get('/pengaturan/password', [UserController::class, 'edit_password'])->name('pengaturan.password');
+    Route::post('/pengaturan/ubah-password', [UserController::class, 'ubah_password'])->name('pengaturan.ubah-password');
 
-    // Route::middleware(['siswa'])->group(function () {
-    //     Route::get('/jadwal/siswa', 'JadwalController@siswa')->name('jadwal.siswa');
-    //     Route::get('/ulangan/siswa', 'UlanganController@siswa')->name('ulangan.siswa');
-    //     Route::get('/sikap/siswa', 'SikapController@siswa')->name('sikap.siswa');
-    //     Route::get('/rapot/siswa', 'RapotController@siswa')->name('rapot.siswa');
-    // });
+    Route::middleware(['siswa'])->group(function () {
+        Route::get('/jadwal/siswa', [JadwalController::class, 'siswa'])->name('jadwal.siswa');
+        Route::get('/ulangan/siswa', [UlanganController::class, 'siswa'])->name('ulangan.siswa');
+        Route::get('/sikap/siswa', [SikapController::class, 'siswa'])->name('sikap.siswa');
+        Route::get('/rapot/siswa', [RapotController::class, 'siswa'])->name('rapot.siswa');
+    });
 
-    // Route::middleware(['guru'])->group(function () {
-    //     Route::get('/absen/harian', 'GuruController@absen')->name('absen.harian');
-    //     Route::post('/absen/simpan', 'GuruController@simpan')->name('absen.simpan');
-    //     Route::get('/jadwal/guru', 'JadwalController@guru')->name('jadwal.guru');
-    //     Route::resource('/nilai', 'NilaiController');
-    //     Route::resource('/ulangan', 'UlanganController');
-    //     Route::resource('/sikap', 'SikapController');
-    //     Route::get('/rapot/predikat', 'RapotController@predikat');
-    //     Route::resource('/rapot', 'RapotController');
-    // });
+    Route::middleware(['guru'])->group(function () {
+        Route::get('/absen/harian', [GuruController::class, 'absen'])->name('absen.harian');
+        Route::post('/absen/simpan', [GuruController::class, 'simpan'])->name('absen.simpan');
+        Route::get('/jadwal/guru', [JadwalController::class, 'guru'])->name('jadwal.guru');
+        Route::resource('/nilai', NilaiController::class);
+        Route::resource('/ulangan', UlanganController::class);
+        Route::resource('/sikap', SikapController::class);
+        Route::get('/rapot/predikat', [RapotController::class, 'predikat']);
+        Route::resource('/rapot', RapotController::class);
+    });
 
     Route::middleware(['admin'])->group(function () {
         Route::middleware(['trash'])->group(function () {
@@ -156,16 +168,18 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/jadwal/deleteAll', [JadwalController::class, 'deleteAll'])->name('jadwal.deleteAll');
         Route::resource('/jadwal', JadwalController::class);
 
-        // Route::get('/ulangan-kelas', 'UlanganController@create')->name('ulangan-kelas');
-        // Route::get('/ulangan-siswa/{id}', 'UlanganController@edit')->name('ulangan-siswa');
-        // Route::get('/ulangan-show/{id}', 'UlanganController@ulangan')->name('ulangan-show');
-        // Route::get('/sikap-kelas', 'SikapController@create')->name('sikap-kelas');
-        // Route::get('/sikap-siswa/{id}', 'SikapController@edit')->name('sikap-siswa');
-        // Route::get('/sikap-show/{id}', 'SikapController@sikap')->name('sikap-show');
-        // Route::get('/rapot-kelas', 'RapotController@create')->name('rapot-kelas');
-        // Route::get('/rapot-siswa/{id}', 'RapotController@edit')->name('rapot-siswa');
-        // Route::get('/rapot-show/{id}', 'RapotController@rapot')->name('rapot-show');
-        // Route::get('/predikat', 'NilaiController@create')->name('predikat');
+
+        Route::get('/ulangan-kelas', [UlanganController::class, 'create'])->name('ulangan-kelas');
+        Route::get('/ulangan-siswa/{id}', [UlanganController::class, 'edit'])->name('ulangan-siswa');
+        Route::get('/ulangan-show/{id}', [UlanganController::class, 'ulangan'])->name('ulangan-show');
+        Route::get('/sikap-kelas', [SikapController::class, 'create'])->name('sikap-kelas');
+        Route::get('/sikap-siswa/{id}', [SikapController::class, 'edit'])->name('sikap-siswa');
+        Route::get('/sikap-show/{id}', [SikapController::class, 'sikap'])->name('sikap-show');
+        Route::get('/rapot-kelas', [RapotController::class, 'create'])->name('rapot-kelas');
+        Route::get('/rapot-siswa/{id}', [RapotController::class, 'edit'])->name('rapot-siswa');
+        Route::get('/rapot-show/{id}', [RapotController::class, 'rapot'])->name('rapot-show');
+        Route::get('/predikat', [NilaiController::class, 'create'])->name('predikat');
+
         Route::resource('/user', UserController::class);
     });
 });
