@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    {{-- CSRF --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>@yield('title')</title>
 
     @stack('before-styles')
@@ -52,6 +54,23 @@
     <script src="{{ asset('admin/js/demo.min.js?1684106062') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function inputAngka(e) {
+            var charCode = (e.which) ? e.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+
+        function sikap(e) {
+            var charCode = (e.which) ? e.which : event.keyCode
+            if (charCode > 31 && (charCode < 49 || charCode > 52)) {
+                return false;
+            }
+            return true;
+        }
+    </script>
 
     @stack('after-scripts')
 </body>

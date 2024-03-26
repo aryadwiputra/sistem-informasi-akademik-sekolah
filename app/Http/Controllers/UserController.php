@@ -62,7 +62,7 @@ class UserController extends Controller
                     'name' => $guru->nama_guru,
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
-                    'role' => $request->role,
+                    'role' => "Guru",
                     'id_card' => $request->nomer,
                 ]);
                 return redirect()->back()->with('success', 'Berhasil menambahkan user Guru baru!');
@@ -80,7 +80,7 @@ class UserController extends Controller
                     'name' => strtolower($siswa->nama_siswa),
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
-                    'role' => $request->role,
+                    'role' => 'Siswa',
                     'no_induk' => $request->nomer,
                 ]);
                 return redirect()->back()->with('success', 'Berhasil menambahkan user Siswa baru!');

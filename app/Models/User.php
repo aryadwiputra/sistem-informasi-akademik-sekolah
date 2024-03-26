@@ -43,4 +43,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function guru($id)
+    {
+        $guru = Guru::where('id_card', $id)->first();
+        return $guru;
+    }
+
+    public function siswa($id)
+    {
+        $siswa = Siswa::where('no_induk', $id)->first();
+        return $siswa;
+    }
 }

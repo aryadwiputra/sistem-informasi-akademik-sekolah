@@ -25,10 +25,12 @@ class RapotController extends Controller
     public function index()
     {
         $guru = Guru::where('id_card', Auth::user()->id_card)->first();
-        $jadwal = Jadwal::where('guru_id', $guru->id)->orderBy('kelas_id')->get();
-        $kelas = $jadwal->groupBy('kelas_id');
 
-        return view('guru.rapot.kelas', compact('kelas', 'guru'));
+
+    $jadwal = Jadwal::where('guru_id', $guru->id)->orderBy('kelas_id')->get();
+    $kelas = $jadwal->groupBy('kelas_id');
+
+    return view('guru.rapot.kelas', compact('kelas', 'guru'));
     }
 
     /**

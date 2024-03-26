@@ -223,174 +223,304 @@
                         </span>
                     </a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
-                        data-bs-auto-close="false" role="button" aria-expanded="false">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                                <path d="M15 15l3.35 3.35" />
-                                <path d="M9 15l-3.35 3.35" />
-                                <path d="M5.65 5.65l3.35 3.35" />
-                                <path d="M18.35 5.65l-3.35 3.35" />
-                            </svg>
-                        </span>
-                        <span class="nav-link-title">
-                            Data Master
-                        </span>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ route('mapel.index') }}" rel="noopener">
-                            Mata Pelajaran
+                @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Operator')
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
+                            data-bs-auto-close="false" role="button" aria-expanded="false">
+                            <span
+                                class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                                    <path d="M15 15l3.35 3.35" />
+                                    <path d="M9 15l-3.35 3.35" />
+                                    <path d="M5.65 5.65l3.35 3.35" />
+                                    <path d="M18.35 5.65l-3.35 3.35" />
+                                </svg>
+                            </span>
+                            <span class="nav-link-title">
+                                Data Master
+                            </span>
                         </a>
-                        <a class="dropdown-item" href="{{ route('guru.index') }}" rel="noopener">
-                            Guru
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ route('mapel.index') }}" rel="noopener">
+                                Mata Pelajaran
+                            </a>
+                            <a class="dropdown-item" href="{{ route('guru.index') }}" rel="noopener">
+                                Guru
+                            </a>
+                            <a class="dropdown-item" href="{{ route('kelas.index') }}" rel="noopener">
+                                Kelas
+                            </a>
+                            <a class="dropdown-item" href="{{ route('jadwal.index') }}" rel="noopener">
+                                Jadwal
+                            </a>
+                            <a class="dropdown-item" href="{{ route('siswa.index') }}" rel="noopener">
+                                Siswa
+                            </a>
+
+                            <a class="dropdown-item" href="{{ route('user.index') }}" rel="noopener">
+                                User
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
+                            data-bs-auto-close="false" role="button" aria-expanded="false">
+                            <span
+                                class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="currentColor"
+                                    class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
+                                    <path
+                                        d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" />
+                                </svg>
+                            </span>
+                            <span class="nav-link-title">
+                                View Trash
+
+                            </span>
                         </a>
-                        <a class="dropdown-item" href="{{ route('kelas.index') }}" rel="noopener">
-                            Kelas
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ route('mapel.trash') }}" rel="noopener">
+                                Trash Mata Pelajaran
+                            </a>
+                            <a class="dropdown-item" href="{{ route('guru.trash') }}" rel="noopener">
+                                Trash Guru
+                            </a>
+                            <a class="dropdown-item" href="{{ route('kelas.trash') }}" rel="noopener">
+                                Trash Kelas
+                            </a>
+                            <a class="dropdown-item" href="{{ route('jadwal.trash') }}" rel="noopener">
+                                Trash Jadwal
+                            </a>
+                            <a class="dropdown-item" href="{{ route('siswa.trash') }}" rel="noopener">
+                                Trash Siswa
+                            </a>
+
+                            <a class="dropdown-item" href="{{ route('user.trash') }}" rel="noopener">
+                                Trash User
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('guru.absensi') }}">
+                            <span
+                                class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-clock">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M10.5 21h-4.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v3" />
+                                    <path d="M16 3v4" />
+                                    <path d="M8 3v4" />
+                                    <path d="M4 11h10" />
+                                    <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                                    <path d="M18 16.5v1.5l.5 .5" />
+                                </svg>
+                            </span>
+                            <span class="nav-link-title">
+                                Absensi Guru
+                            </span>
                         </a>
-                        <a class="dropdown-item" href="{{ route('jadwal.index') }}" rel="noopener">
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
+                            data-bs-auto-close="false" role="button" aria-expanded="false">
+                            <span
+                                class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-text">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                                    <path
+                                        d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                                    <path d="M9 12h6" />
+                                    <path d="M9 16h6" />
+                                </svg>
+                            </span>
+                            <span class="nav-link-title">
+                                Nilai
+                            </span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ route('ulangan-kelas') }}" rel="noopener">
+                                Nilai Ulangan
+                            </a>
+                            <a class="dropdown-item" href="{{ route('sikap-kelas') }}" rel="noopener">
+                                Nilai Sikap
+                            </a>
+                            <a class="dropdown-item" href="{{ route('rapot-kelas') }}" rel="noopener">
+                                Nilai Rapot
+                            </a>
+                            <a class="dropdown-item" href="{{ route('predikat') }}" rel="noopener">
+                                Deskripsi Predikat
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.pengumuman') }}">
+                            <span
+                                class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-calendar">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
+                                    <path d="M16 3v4" />
+                                    <path d="M8 3v4" />
+                                    <path d="M4 11h16" />
+                                    <path d="M11 15h1" />
+                                    <path d="M12 15v3" />
+                                </svg>
+                            </span>
+                            <span class="nav-link-title">
+                                Pengumuman
+                            </span>
+                        </a>
+                    </li>
+                @elseif (Auth::user()->role == 'Guru')
+                    <li class="nav-item">
+                        <a href="{{ route('absen.harian') }}" class="nav-link" id="AbsenGuru">
+                            <span
+                                class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-clock">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M10.5 21h-4.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v3" />
+                                    <path d="M16 3v4" />
+                                    <path d="M8 3v4" />
+                                    <path d="M4 11h10" />
+                                    <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                                    <path d="M18 16.5v1.5l.5 .5" />
+                                </svg>
+                            </span>
+                            Absen
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('jadwal.guru') }}" class="nav-link" id="JadwalGuru">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-calendar">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
+                                    <path d="M16 3v4" />
+                                    <path d="M8 3v4" />
+                                    <path d="M4 11h16" />
+                                    <path d="M11 15h1" />
+                                    <path d="M12 15v3" />
+                                </svg>
+                            </span>
                             Jadwal
                         </a>
-                        <a class="dropdown-item" href="{{ route('siswa.index') }}" rel="noopener">
-                            Siswa
-                        </a>
+                    </li>
+                    <li class="nav-item dropdown" id="liNilaiGuru">
 
-                        <a class="dropdown-item" href="{{ route('user.index') }}" rel="noopener">
-                            User
+                        <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
+                            data-bs-auto-close="false" role="button" aria-expanded="false">
+                            <span
+                                class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-text">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                                    <path
+                                        d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                                    <path d="M9 12h6" />
+                                    <path d="M9 16h6" />
+                                </svg>
+                            </span>
+                            <span class="nav-link-title">
+                                Nilai
+                            </span>
                         </a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
-                        data-bs-auto-close="false" role="button" aria-expanded="false">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="currentColor"
-                                class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path
-                                    d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
-                                <path
-                                    d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" />
-                            </svg>
-                        </span>
-                        <span class="nav-link-title">
-                            View Trash
-
-                        </span>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ route('mapel.trash') }}" rel="noopener">
-                            Trash Mata Pelajaran
-                        </a>
-                        <a class="dropdown-item" href="{{ route('guru.trash') }}" rel="noopener">
-                            Trash Guru
-                        </a>
-                        <a class="dropdown-item" href="{{ route('kelas.trash') }}" rel="noopener">
-                            Trash Kelas
-                        </a>
-                        <a class="dropdown-item" href="{{ route('jadwal.trash') }}" rel="noopener">
-                            Trash Jadwal
-                        </a>
-                        <a class="dropdown-item" href="{{ route('siswa.trash') }}" rel="noopener">
-                            Trash Siswa
-                        </a>
-
-                        <a class="dropdown-item" href="{{ route('user.trash') }}" rel="noopener">
-                            Trash User
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('guru.absensi') }}">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-calendar">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path
-                                    d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
-                                <path d="M16 3v4" />
-                                <path d="M8 3v4" />
-                                <path d="M4 11h16" />
-                                <path d="M11 15h1" />
-                                <path d="M12 15v3" />
-                            </svg>
-                        </span>
-                        <span class="nav-link-title">
-                            Absensi Guru
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
-                        data-bs-auto-close="false" role="button" aria-expanded="false">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-text">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path
-                                    d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
-                                <path
-                                    d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                                <path d="M9 12h6" />
-                                <path d="M9 16h6" />
-                            </svg>
-                        </span>
-                        <span class="nav-link-title">
+                        {{-- <a href="#" class="nav-link" id="NilaiGuru">
                             Nilai
-                        </span>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ route('ulangan-kelas') }}" rel="noopener">
-                            Nilai Ulangan
+                        </a> --}}
+                        <div class="dropdown-menu">
+                            <a href="{{ route('ulangan.index') }}" class="dropdown-item" id="UlanganGuru">
+                                Entry Nilai Ulangan
+                            </a>
+                            @php
+                                $userGuru = Auth::user()->guru(Auth::user()->id_card);
+                            @endphp
+
+                            @if (
+                                $userGuru &&
+                                    $userGuru->mapel &&
+                                    ($userGuru->mapel->nama_mapel == 'Pendidikan Agama dan Budi Pekerti' ||
+                                        $userGuru->mapel->nama_mapel == 'Pendidikan Pancasila dan Kewarganegaraan'))
+                                <a href="{{ route('sikap.index') }}" class="dropdown-item" id="SikapGuru">
+                                    Entry Nilai Sikap
+                                </a>
+                            @else
+                            @endif
+
+                            <a href="{{ route('rapot.index') }}" class="dropdown-item" id="RapotGuru">
+                                Entry Nilai Rapot
+                            </a>
+
+                            <a href="{{ route('nilai.index') }}" class="dropdown-item" id="DesGuru">
+                                <i class="fas fa-file-alt nav-icon"></i>
+                                Deskripsi Predikat
+                            </a>
+                        </div>
+                    </li>
+                @elseif (Auth::user()->role == 'Siswa' && Auth::user()->siswa(Auth::user()->no_induk))
+                    <li class="nav-item">
+                        <a href="{{ url('/') }}" class="nav-link" id="Home">
+                            Dashboard
                         </a>
-                        <a class="dropdown-item" href="{{ route('sikap-kelas') }}" rel="noopener">
-                            Nilai Sikap
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('jadwal.siswa') }}" class="nav-link" id="JadwalSiswa">
+                            <i class="fas fa-calendar-alt nav-icon"></i>
+                            Jadwal
                         </a>
-                        <a class="dropdown-item" href="{{ route('rapot-kelas') }}" rel="noopener">
-                            Nilai Rapot
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('ulangan.siswa') }}" class="nav-link" id="UlanganSiswa">
+                            Ulangan
                         </a>
-                        <a class="dropdown-item" href="{{ route('predikat') }}" rel="noopener">
-                            Deskripsi Predikat
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('sikap.siswa') }}" class="nav-link" id="SikapSiswa">
+                            Sikap
                         </a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.pengumuman') }}">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-calendar">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path
-                                    d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
-                                <path d="M16 3v4" />
-                                <path d="M8 3v4" />
-                                <path d="M4 11h16" />
-                                <path d="M11 15h1" />
-                                <path d="M12 15v3" />
-                            </svg>
-                        </span>
-                        <span class="nav-link-title">
-                            Pengumuman
-                        </span>
-                    </a>
-                </li>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('rapot.siswa') }}" class="nav-link" id="RapotSiswa">
+                            Rapot
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a href="{{ url('/') }}" class="nav-link" id="Home">
+                            Dashboard
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
